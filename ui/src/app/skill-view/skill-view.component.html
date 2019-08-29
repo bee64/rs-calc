@@ -1,8 +1,9 @@
 Hey {{playerName}}.
-<div *ngIf="player">
+<app-level-input [player]="player"></app-level-input>
+<!-- <div *ngIf="player">
     <div *ngFor="let skill of getIterableSkills()">
         <h1>{{skill}}</h1>
         <p>Level: {{player.skills[skill].level}}</p>
         <p>Exp: {{player.skills[skill].exp}}</p>
     </div>
-</div>
+</div> -->

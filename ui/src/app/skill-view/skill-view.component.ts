@@ -31,8 +31,4 @@ export class SkillViewComponent implements OnInit {
     }
   }
 
-  getIterableSkills() {
-    return Object.keys(this.player.skills);
-  }
-
 }
