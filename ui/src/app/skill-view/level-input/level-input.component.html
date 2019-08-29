@@ -1,0 +1,33 @@
+<div class="container-fluid level-container">
+    <div class="row">
+        <div class="form-group">
+            <label for="playerName">Player Name</label>
+            <input class="form-control" type="text" id="playerName" aria-label="Player Name Input">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <label>Current Level</label>
+            <input class="form-control" type="text" aria-label="Current Level Input"
+                (keyup)="onCurrentLevelChange()">
+        </div>
+        <div class="col">
+            <label>Target Level</label>
+            <input class="form-control" type="text" aria-label="Target Level Input"
+                (keyup)="onTargetLevelChange()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Current Experience</label>
+            <input class="form-control" type="text" aria-label="Current experience Input"
+                (keyup)="onCurrentExperienceChange()">
+        </div>
+        <div class="col">
+            <label>Target Experience</label>
+            <input class="form-control" type="text" aria-label="Target Experience Input"
+                (keyup)="onTargetExperienceChange()">
+        </div>
+    </div>
+</div>
