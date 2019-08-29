@@ -16,7 +16,6 @@ export class SkillViewComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
-    console.log(this.playerName);
     this.getPlayer();
   }
 
@@ -24,9 +23,8 @@ export class SkillViewComponent implements OnInit {
     if (this.playerName) {
       this.playerService
         .getPlayer(this.playerName)
-        .subscribe((res: Player) => {
-          console.log(res);
-          this.player = res;
+        .subscribe(res => {
+          this.player = new Player((res as any).skills, this.playerName);
         });
     }
   }

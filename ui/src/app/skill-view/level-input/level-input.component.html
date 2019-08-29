@@ -2,7 +2,8 @@
     <div class="row">
         <div class="form-group">
             <label for="playerName">Player Name</label>
-            <input class="form-control" type="text" id="playerName" aria-label="Player Name Input">
+            <input class="form-control" type="text" id="playerName" aria-label="Player Name Input" 
+                [value]="getPlayerName()">
         </div>
     </div>
     <hr>
@@ -10,24 +11,24 @@
         <div class="col">
             <label>Current Level</label>
             <input class="form-control" type="text" aria-label="Current Level Input"
-                (keyup)="onCurrentLevelChange()">
+                (keyup)="onCurrentLevelChange()" [(ngModel)]="currentLevel">
         </div>
         <div class="col">
             <label>Target Level</label>
             <input class="form-control" type="text" aria-label="Target Level Input"
-                (keyup)="onTargetLevelChange()">
+                (keyup)="onTargetLevelChange()" [(ngModel)]="targetLevel">
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label>Current Experience</label>
             <input class="form-control" type="text" aria-label="Current experience Input"
-                (keyup)="onCurrentExperienceChange()">
+                (keyup)="onCurrentExperienceChange()" [(ngModel)]="currentExperience">
         </div>
         <div class="col">
             <label>Target Experience</label>
             <input class="form-control" type="text" aria-label="Target Experience Input"
-                (keyup)="onTargetExperienceChange()">
+                (keyup)="onTargetExperienceChange()" [(ngModel)]="targetExperience">
         </div>
     </div>
 </div>
