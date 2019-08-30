@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require('express');
 const app = express();
 
@@ -41,6 +40,20 @@ app.get('/player/:id/', function (req, res) {
         });
 });
 
+function generateXpMap () {
+    let levelMap = [0];
+    let xp = 0;
+    for(let level = 1; level <= 99; level++) {
+        xp += Math.floor(
+            (1 / 4) * Math.floor((level + 300 * Math.pow(2, (level / 7))))
+            );
+        levelMap.push(xp);
+    }
+    console.log(levelMap);
+    return levelMap;
+}
+
 app.listen(SERVER_PORT, () => {
     console.log('Node server running on ' + SERVER_HOST + ':' + SERVER_PORT);
+    generateXpMap();
 });
