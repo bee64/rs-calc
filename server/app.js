@@ -7,10 +7,6 @@ const rs_api = require('runescape-api');
 const SERVER_HOST = '127.0.0.1';
 const SERVER_PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.send('hello world!');
-});
-
 // GET beasts from the RS bestiary
 app.get('/beast/:id', function (req, res) {
     var id = req.params.id;
@@ -29,13 +25,8 @@ app.get('/beast/:id', function (req, res) {
 // GET players stats
 app.get('/player/:id/', function (req, res) {
     var id = req.params.id;
-    res.setHeader('Content-Type', 'application/json');
-
-    
-
     id = encodeURIComponent(id);
-    console.log('Searching for player with id: ' + id);
-
+    res.setHeader('Content-Type', 'application/json');
 
     rs_api.osrs.hiscores.player(id)
         .then(function (scores) {
