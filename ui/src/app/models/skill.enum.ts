@@ -1,3 +1,4 @@
 export enum Skill {
-    prayer = 'prayer'
+    prayer = 'prayer',
+    attack = 'attack'
 }

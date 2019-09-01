@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { PlayerService } from './../../services/player.service';
+import { XpTableService } from './../../services/xp-table.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Player } from '../../models/player';
 import { Skill } from './../../models/skill.enum';
 
@@ -7,9 +9,7 @@ import { Skill } from './../../models/skill.enum';
   templateUrl: './level-input.component.html',
   styleUrls: ['./level-input.component.scss']
 })
-export class LevelInputComponent implements OnChanges, OnInit {
-
-  @Input() player: Player;
+export class LevelInputComponent implements OnInit {
 
   @Input() skill: Skill;
 
@@ -21,27 +21,54 @@ export class LevelInputComponent implements OnChanges, OnInit {
   targetLevel: number = 10;
   targetExperience: number;
 
-  constructor() { }
+  playerName: string;
+  player: Player;
+
+  constructor(
+    private xpTableService: XpTableService,
+    private playerService: PlayerService
+  ) { }
 
   ngOnInit() {
-    // TODO: ??? = level -> xp
-    // this.currentExperience = ??? // Only calc if player object did not assign it a value
-    // this.targetExperience = ???
+    if (!this.skill) {
+      console.log("level-input.component.ts: the skill is required for this!");
+    }
+    this.currentExperience = this.xpTableService.getExperienceForLevel(this.currentLevel);
+    this.setPlayerAsCurrent();
+    this.initTarget();
   }
 
-  ngOnChanges() {
+  initTarget() {
+    this.targetLevel = Math.min(this.currentLevel + 9, 99);
+    this.targetExperience = this.xpTableService.getExperienceForLevel(this.targetLevel);
+
+    console.log('init target xp');
+    console.log(this.targetLevel);
+    console.log(this.targetExperience);
+  }
+
+  setPlayerAsCurrent() {
     if (this.player) {
+      console.log(this.skill);
       let skillValues = this.player.getSkill(this.skill);
+      console.log(skillValues);
       this.currentLevel = skillValues.level;
       this.currentExperience = skillValues.exp;
-
-      this.targetLevel = Math.min(this.currentLevel + 10, 99);
-      // this.targetExperience = ???
     }
   }
 
-  getPlayerName() {
-    return this.player ? this.player.name : "";
+  onPlayerNameKeyup(event: any) {
+    // Enter
+    if (event.keyCode === 13) {
+      this.onPlayerChange();
+    }
+  }
+
+  onPlayerChange() {
+    if (this.playerName !== "") {
+      this.player = this.playerService.getPlayer(this.playerName);
+      this.setPlayerAsCurrent();  
+    }
   }
 
   onTargetExperienceChange() {

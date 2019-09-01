@@ -9,13 +9,28 @@ import { Player } from '../models/player';
 })
 export class PlayerService {
 
+  player: Player;
+
   constructor(
     private http: HttpClient
   ) { }
 
   private playerUrl = '/player/';
 
-  getPlayer(name: string): Observable<Player> {
+  getPlayer(name: string): Player {
+    if (this.player && this.player.name === name) {
+      return this.player;
+    }
+    else {
+      this.fetchPlayer(name).subscribe((res) => {
+        this.player = new Player((res as any).skills, name); 
+        return this.player;
+      });
+    }
+  }
+
+  fetchPlayer(name: string): Observable<Player> {
     return this.http.get<Player>(this.playerUrl + name);
   }
+
 }

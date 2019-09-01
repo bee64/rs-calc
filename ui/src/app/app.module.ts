@@ -1,3 +1,4 @@
+import { XpTableService } from './services/xp-table.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +23,8 @@ import { PlayerService } from './services/player.service';
     FormsModule
   ],
   providers: [
-    PlayerService
+    PlayerService,
+    XpTableService
   ],
   bootstrap: [AppComponent]
 })

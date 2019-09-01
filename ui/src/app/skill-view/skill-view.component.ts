@@ -20,13 +20,7 @@ export class SkillViewComponent implements OnInit {
   }
 
   getPlayer() {
-    if (this.playerName) {
-      this.playerService
-        .getPlayer(this.playerName)
-        .subscribe(res => {
-          this.player = new Player((res as any).skills, this.playerName);
-        });
-    }
+    this.player = this.playerService.getPlayer(this.playerName);
   }
 
 }

@@ -8,8 +8,7 @@ export class Player {
         ) {}
 
     public getSkill(skill: Skill) {
-        // return this.skills[skill];
-        return this.skills['prayer'];
+        return this.skills[skill];
     }
     
 }

@@ -1,9 +1,18 @@
 <div class="container-fluid level-container">
     <div class="row">
-        <div class="form-group">
+        <div class="col">
+            <div>Maybe a prayer icon here idk</div>
+            <div>Skill is: <input [(ngModel)]="skill"></div>
+        </div>
+        <div class="col">
             <label for="playerName">Player Name</label>
-            <input class="form-control" type="text" id="playerName" aria-label="Player Name Input" 
-                [value]="getPlayerName()">
+            <div class="input-group">
+                <input class="form-control" type="text" id="playerName" aria-label="Player Name Input" 
+                     (keyup)="onPlayerNameKeyup($event)" [(ngModel)]="playerName">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="onPlayerChange()">Update</button>
+                </div>
+            </div>
         </div>
     </div>
     <hr>
